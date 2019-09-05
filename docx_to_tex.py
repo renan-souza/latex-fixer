@@ -7,7 +7,6 @@ from bibtexparser.bibdatabase import BibDatabase
 from bibtexparser.bwriter import BibTexWriter
 import os
 from bibtexparser.bparser import BibTexParser
-from difflib import SequenceMatcher
 
 
 def intext_citations(filepath):
