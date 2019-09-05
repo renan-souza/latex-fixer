@@ -59,11 +59,6 @@ def intext_citations(filepath):
                 else:
                     first_word_title = title[0]
 
-                # # fixing chars after :
-                # ix = first_word_title.find(':')
-                # if ix > 0:
-                #     first_word_title = first_word_title[:ix] + ":"
-
                 citekeys += lastname+year+first_word_title + ","
                 citekeys = citekeys.replace(" ", "")
 
@@ -112,15 +107,6 @@ def bibfix(filepath):
     newcontent = unidecode(fcontent)
     newcontent = newcontent.replace("&", "\&").replace("_", "\_")
     bibentries: BibDatabase = bibtexparser.loads(newcontent)
-    # with open(filepath + ".current.bib", 'w') as bibfile:
-    #     bibtexparser.dump(bibentries, bibfile)
-    # db._entries_dict = newentries
-    writer = BibTexWriter()
-
-
-    writer.indent = '  '     # indent entries with 4 spaces instead of one
-    with open(filepath+".current.bib", 'w') as bibfile:
-        bibfile.write(writer.write(bibentries))
 
     for comm in bibentries.comments:
         try:
@@ -150,17 +136,9 @@ def bibfix(filepath):
 
     if len(duplicate_keys) > 0:
         print("Duplicate keys: " + str(duplicate_keys))
-    # for entry in bibentries.get_entry_list():
-    #     entry["ID"] = entry["ID"].replace(r"\s", "")
-
-
+        
     with open(filepath + ".fixed.bib", 'w') as bibfile:
         bibtexparser.dump(bibentries, bibfile)
-
-
-
-
-
 
 filepath = sys.argv[1]
 #filepath = "/Users/rfsouza/Dropbox/Doctorate/_Tese/Qualify/bibliography.bib"
