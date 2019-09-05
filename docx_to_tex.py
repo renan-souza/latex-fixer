@@ -9,8 +9,6 @@ import os
 from bibtexparser.bparser import BibTexParser
 from difflib import SequenceMatcher
 
-def similar(a, b):
-    return SequenceMatcher(None, a, b).ratio()
 
 def intext_citations(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
