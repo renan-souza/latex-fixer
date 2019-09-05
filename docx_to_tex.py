@@ -23,8 +23,6 @@ def intext_citations(filepath):
     to_json = None
     for cite in cites:
         try:
-            #print(cite.encode("utf-8"))
-            #original_cite = cite
             search = re.search(r"(ITEM\s*CSL\\_CITATION\s*\\{)(.*)(csl-citation.json)", cite, re.MULTILINE | re.DOTALL)
             try:
                 groups = search.groups()
@@ -141,7 +139,6 @@ def bibfix(filepath):
         bibtexparser.dump(bibentries, bibfile)
 
 filepath = sys.argv[1]
-#filepath = "/Users/rfsouza/Dropbox/Doctorate/_Tese/Qualify/bibliography.bib"
 _, file_extension = os.path.splitext(filepath)
 if file_extension == ".tex":
     intext_citations(filepath)
